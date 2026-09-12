@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>رحلتي الألمانية — Deutsch Reise</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%87%A9%F0%9F%87%AA%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#12141b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#12141b;
+  --bg2:#191c26;
+  --card:#1e222e;
+  --card-hi:#262b3a;
+  --line:#2c3142;
+  --cream:#f2ede2;
+  --muted:#9aa1b4;
+  --gold:#d6a94a;
+  --gold-dim:#8a7239;
+  --brick:#c1503f;
+  --der:#6f9ceb;
+  --die:#e3708c;
+  --das:#63b98a;
+  --verb:#c8a2e0;
+  --radius:16px;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--cream);font-family:'Cairo',sans-serif;}
+body{padding-bottom:78px; min-height:100vh;}
+h1,h2,h3{font-family:'Fraunces',serif; margin:0;}
+::selection{background:var(--gold); color:#12141b;}
+a{color:inherit;}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  padding:120px 20px 26px;
+  background:
+    linear-gradient(180deg, rgba(10,11,15,.35) 0%, rgba(10,11,15,.55) 45%, #12141b 96%),
+    url('hero-bg.png');
+  background-size:cover;
+  background-position:center 18%;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:0; height:6px;
+  background:linear-gradient(90deg,#161616 0 33%, var(--brick) 33% 66%, var(--gold) 66% 100%);
+  opacity:.9;
+}
+.hero-eyebrow{font-size:13px; color:var(--gold); letter-spacing:.02em; margin-bottom:6px; display:block; text-shadow:0 2px 10px rgba(0,0,0,.6);}
+.made-by{font-size:11px; color:var(--cream); opacity:.8; margin-top:10px; display:inline-flex; align-items:center; gap:6px; background:rgba(15,16,22,.5); border:1px solid rgba(255,255,255,.15); padding:5px 12px; border-radius:20px; backdrop-filter:blur(4px);}
+.made-by b{color:var(--gold); font-weight:700;}
+.app-credit-footer{text-align:center; font-size:10.5px; color:var(--gold-dim); padding:22px 10px 10px; opacity:.85; letter-spacing:.02em;}
+.app-credit-footer b{color:var(--gold);}
+.hero h1{font-size:30px; font-weight:700; line-height:1.25; color:var(--cream); text-shadow:0 3px 16px rgba(0,0,0,.7);}
+.hero h1 em{font-style:italic; color:var(--gold);}
+.hero p{margin-top:10px; color:var(--cream); opacity:.92; font-size:14.5px; line-height:1.8; max-width:46ch; text-shadow:0 2px 10px rgba(0,0,0,.6);}
+.hero-stats{display:flex; gap:10px; margin-top:18px; flex-wrap:wrap;}
+.stat{background:rgba(15,16,22,.55); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.14); border-radius:12px; padding:10px 14px; min-width:84px;}
+.stat b{display:block; font-family:'Fraunces',serif; font-size:20px; color:var(--gold);}
+.stat span{font-size:11.5px; color:var(--cream); opacity:.85;}
+
+/* ---------- SCREENS ---------- */
+.screen{display:none; padding:18px 16px 8px;}
+.screen.active{display:block;}
+.section-title{display:flex; align-items:baseline; justify-content:space-between; margin:22px 0 12px;}
+.section-title h2{font-size:18px; color:var(--cream);}
+.section-title span{font-size:12px; color:var(--muted);}
+
+/* ---------- LESSON MAP GRID ---------- */
+.lesson-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
+.lesson-card{
+  position:relative; background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:14px; cursor:pointer; transition:transform .15s ease, border-color .15s ease;
+  display:flex; flex-direction:column; gap:8px; min-height:118px;
+}
+.lesson-card:active{transform:scale(.97);}
+.lesson-card .num{
+  width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center;
+  font-family:'Fraunces',serif; font-weight:700; font-size:14px; color:#12141b; background:var(--gold);
+}
+.lesson-card .lname{font-size:13.5px; line-height:1.5; color:var(--cream); font-weight:600;}
+.lesson-card .lmeta{font-size:11px; color:var(--muted); margin-top:auto;}
+.lesson-card.done{border-color:var(--das);}
+.lesson-card .badge{position:absolute; top:10px; left:10px; font-size:10px; background:rgba(99,185,138,.15); color:var(--das); border:1px solid rgba(99,185,138,.4); padding:2px 7px; border-radius:20px;}
+
+/* ---------- TIP CARD ---------- */
+.tip-card{background:linear-gradient(135deg, rgba(214,169,74,.10), rgba(193,80,63,.08)); border:1px solid var(--gold-dim); border-radius:var(--radius); padding:16px; margin-bottom:6px;}
+.tip-card h3{font-size:15px; color:var(--gold); margin-bottom:8px;}
+.tip-card ul{margin:0; padding-inline-start:20px; font-size:13px; color:var(--muted); line-height:2;}
+
+/* ---------- LESSON DETAIL ---------- */
+.lesson-header{display:flex; align-items:center; gap:12px; margin-bottom:6px;}
+.back-btn{background:var(--card); border:1px solid var(--line); color:var(--cream); width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px;}
+.lesson-header h2{font-size:19px;}
+.lesson-header .sub{font-size:12.5px; color:var(--muted); margin-top:2px;}
+
+.tabbar{display:flex; gap:4px; margin:16px 0; background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:4px; overflow-x:auto;}
+.tabbar button{flex:1; background:transparent; border:none; color:var(--muted); font-family:'Cairo'; font-size:11.5px; font-weight:600; padding:9px 3px; border-radius:9px; cursor:pointer; white-space:nowrap;}
+.tabbar button.active{background:var(--gold); color:#12141b;}
+
+.group-block{margin-bottom:20px;}
+.group-block h3{font-size:14px; color:var(--gold); margin-bottom:10px; display:flex; align-items:center; gap:8px;}
+.group-block h3::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--gold); display:inline-block;}
+
+.word-list{display:flex; flex-direction:column; gap:8px;}
+.word-row{
+  background:var(--card); border:1px solid var(--line); border-radius:12px; padding:11px 13px;
+  display:flex; align-items:center; gap:12px; cursor:pointer;
+}
+.word-row .tag{width:6px; align-self:stretch; border-radius:4px; flex-shrink:0;}
+.word-row .content{flex:1; min-width:0;}
+.word-row .de{font-size:15.5px; font-weight:600; color:var(--cream); direction:ltr; text-align:right; unicode-bidi:isolate;}
+.word-row .ar{font-size:13px; color:var(--muted); margin-top:3px;}
+.word-row .ex{font-size:11.5px; color:var(--gold-dim); margin-top:4px; direction:ltr; text-align:right; font-style:italic;}
+.tag-m{background:var(--der);} .tag-f{background:var(--die);} .tag-n{background:var(--das);}
+.tag-v{background:var(--verb);} .tag-a{background:#e0a568;} .tag-r{background:#7fc9c9;}
+.tag-p{background:#8890a3;} .tag-x{background:#4a4f60;}
+
+.legend{display:flex; gap:14px; flex-wrap:wrap; font-size:11.5px; color:var(--muted); margin:2px 0 18px;}
+.legend span{display:inline-flex; align-items:center; gap:5px;}
+.legend i{width:10px;height:10px;border-radius:3px; display:inline-block;}
+
+/* sentences */
+.sent-row{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin-bottom:8px;}
+.sent-row .n{color:var(--gold); font-size:11px; margin-inline-end:6px;}
+.sent-row .de{direction:ltr; text-align:right; font-size:14.5px; color:var(--cream); font-weight:600;}
+.sent-row .ar{font-size:12.5px; color:var(--muted); margin-top:5px;}
+.soon-box{background:var(--card); border:1px dashed var(--line); border-radius:var(--radius); padding:26px 18px; text-align:center; color:var(--muted); font-size:13.5px; line-height:2;}
+.soon-box b{color:var(--gold); display:block; font-family:'Fraunces',serif; font-size:16px; margin-bottom:6px;}
+
+/* flashcards */
+.flash-wrap{display:flex; flex-direction:column; align-items:center; gap:16px; padding:6px 0 20px;}
+.flash-count{font-size:12.5px; color:var(--muted);}
+.flashcard{
+  width:100%; max-width:340px; height:190px; perspective:1200px; cursor:pointer;
+}
+.flashcard-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+.flashcard.flipped .flashcard-inner{transform:rotateY(180deg);}
+.flashcard-face{
+  position:absolute; inset:0; backface-visibility:hidden; border-radius:18px;
+  display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
+  border:1px solid var(--line);
+}
+.flashcard-front{background:linear-gradient(160deg,var(--card-hi),var(--card)); flex-direction:column; gap:8px;}
+.flashcard-front .de{font-family:'Fraunces',serif; font-size:24px; color:var(--gold); direction:ltr;}
+.flashcard-front .hint{font-size:11.5px; color:var(--muted);}
+.flashcard-back{background:linear-gradient(160deg,#26304a,#1c2233); transform:rotateY(180deg); flex-direction:column; gap:6px;}
+.flashcard-back .ar{font-size:19px; font-weight:700;}
+.flashcard-back .ex{font-size:12px; color:var(--muted); direction:ltr; font-style:italic;}
+.flash-nav{display:flex; gap:10px;}
+.flash-nav button{background:var(--card); border:1px solid var(--line); color:var(--cream); padding:10px 18px; border-radius:12px; font-family:'Cairo'; font-size:13.5px; cursor:pointer;}
+.flash-nav button:active{transform:scale(.96);}
+
+/* ---------- BOTTOM NAV ---------- */
+.bottom-nav{
+  position:fixed; bottom:0; left:0; right:0; background:rgba(18,20,27,.92); backdrop-filter:blur(10px);
+  border-top:1px solid var(--line); display:flex; z-index:20;
+}
+.bottom-nav button{flex:1; background:none; border:none; color:var(--muted); padding:10px 2px 8px; font-family:'Cairo'; font-size:10px; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; white-space:nowrap;}
+.bottom-nav svg{width:18px; height:18px;}
+.bottom-nav button.active{color:var(--gold);}
+.bottom-nav svg{width:20px; height:20px;}
+
+/* progress screen */
+.prog-ring-row{display:flex; align-items:center; gap:16px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:16px; margin-bottom:16px;}
+.prog-num{font-family:'Fraunces',serif; font-size:34px; color:var(--gold);}
+.prog-list .lesson-mini{display:flex; justify-content:space-between; align-items:center; padding:10px 12px; background:var(--card); border:1px solid var(--line); border-radius:10px; margin-bottom:7px; font-size:13px;}
+.prog-list .lesson-mini .chk{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:11px;}
+.prog-list .lesson-mini.on .chk{background:var(--das); border-color:var(--das); color:#12141b;}
+
+/* ---------- GRAMMAR ---------- */
+.gram-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:16px; margin-bottom:14px;}
+.gram-card h3{font-size:15.5px; color:var(--gold); margin-bottom:4px;}
+.gram-card .gram-sub{font-size:12px; color:var(--muted); margin-bottom:12px; line-height:1.8;}
+.conj-table{width:100%; border-collapse:collapse; font-size:13px;}
+.conj-table td{padding:7px 6px; border-bottom:1px solid var(--line);}
+.conj-table td:first-child{color:var(--muted); width:30%;}
+.conj-table td:last-child{direction:ltr; text-align:right; font-weight:600; color:var(--cream);}
+.conj-table tr:last-child td{border-bottom:none;}
+.verb-pill-grid{display:flex; flex-wrap:wrap; gap:7px; margin-top:6px;}
+.vpill{font-size:11.5px; padding:5px 10px; border-radius:20px; border:1px solid var(--line); direction:ltr; display:inline-flex; align-items:center; gap:5px;}
+.vpill.strong{border-color:var(--brick); color:#f0a89b;}
+.vpill.sep{border-color:var(--der); color:#a9c6f5;}
+.vpill.mod{border-color:var(--gold-dim); color:var(--gold);}
+.vpill.reg{border-color:var(--das); color:#9fd8b8;}
+.prep-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;}
+.prep-item{background:var(--bg2); border:1px solid var(--line); border-radius:10px; padding:8px 10px; text-align:center;}
+.prep-item .w{font-family:'Fraunces',serif; font-size:15px; color:var(--gold); direction:ltr;}
+.case-table{width:100%; border-collapse:collapse; font-size:12.5px; text-align:center; margin-top:8px;}
+.case-table th{color:var(--muted); font-weight:600; padding:6px 4px; font-size:11.5px;}
+.case-table td{padding:8px 4px; border-top:1px solid var(--line); direction:ltr; font-weight:600;}
+.case-table td:first-child, .case-table th:first-child{direction:rtl; color:var(--muted); font-weight:400; text-align:right;}
+.gram-note{background:rgba(214,169,74,.08); border-inline-start:3px solid var(--gold); padding:8px 12px; border-radius:8px; font-size:12px; color:var(--muted); margin-top:10px; line-height:1.8;}
+
+/* ---------- SITUATIONS ---------- */
+.situation-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:16px; margin-bottom:16px;}
+.situation-card h3{font-size:15px; color:var(--gold); margin-bottom:2px;}
+.situation-card .subtitle{font-size:11.5px; color:var(--muted); direction:ltr; text-align:right; margin-bottom:14px;}
+.chat-row{display:flex; margin-bottom:10px;}
+.chat-row.speaker-B{justify-content:flex-end;}
+.chat-bubble{max-width:80%; padding:10px 14px; border-radius:16px; position:relative;}
+.chat-row.speaker-A .chat-bubble{background:var(--bg2); border:1px solid var(--line); border-bottom-right-radius:4px;}
+.chat-row.speaker-B .chat-bubble{background:rgba(214,169,74,.14); border:1px solid var(--gold-dim); border-bottom-left-radius:4px;}
+.chat-bubble .de{direction:ltr; text-align:right; font-size:14px; color:var(--cream); font-weight:600;}
+.chat-bubble .ar{font-size:12px; color:var(--muted); margin-top:5px;}
+.chat-label{font-size:10px; color:var(--gold-dim); margin-bottom:3px; direction:ltr; text-align:right;}
+.phrase-title{font-size:12.5px; color:var(--cream); margin:14px 0 8px;}
+.phrase-chip{display:inline-flex; flex-direction:column; background:var(--bg2); border:1px solid var(--line); border-radius:10px; padding:7px 11px; margin:0 6px 6px 0;}
+.phrase-chip .de{font-size:12.5px; direction:ltr; color:var(--gold);}
+.phrase-chip .ar{font-size:11px; color:var(--muted); margin-top:2px;}
+
+/* ---------- SCREEN TRANSITIONS ---------- */
+@keyframes fadeSlideIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+.screen.active{animation:fadeSlideIn .28s ease;}
+@keyframes popIn{ from{opacity:0; transform:scale(.9);} to{opacity:1; transform:scale(1);} }
+
+/* ---------- SPEAKER BUTTON ---------- */
+.speak-btn{
+  width:30px; height:30px; flex-shrink:0; border-radius:50%; border:1px solid var(--line); background:var(--bg2);
+  display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--gold); transition:transform .15s, background .15s;
+}
+.speak-btn:active{transform:scale(.88); background:rgba(214,169,74,.18);}
+.speak-btn.speaking{background:var(--gold); color:#12141b; animation:pulse 1s infinite;}
+@keyframes pulse{ 0%,100%{box-shadow:0 0 0 0 rgba(214,169,74,.5);} 50%{box-shadow:0 0 0 6px rgba(214,169,74,0);} }
+.speak-btn svg{width:15px;height:15px;}
+
+/* ---------- LESSON ICON ---------- */
+.lesson-icon{font-size:26px; line-height:1;}
+.lesson-card{gap:6px;}
+.lesson-card .top-row{display:flex; align-items:center; justify-content:space-between;}
+
+/* ---------- PROGRESS RING ---------- */
+.ring-wrap{position:relative; width:76px; height:76px; flex-shrink:0;}
+.ring-wrap svg{transform:rotate(-90deg); width:100%; height:100%;}
+.ring-wrap .ring-bg{fill:none; stroke:var(--line); stroke-width:7;}
+.ring-wrap .ring-fg{fill:none; stroke:var(--gold); stroke-width:7; stroke-linecap:round; transition:stroke-dashoffset .6s ease;}
+.ring-wrap .ring-label{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:16px; color:var(--gold); font-weight:700;}
+
+/* ---------- STREAK BADGE ---------- */
+.streak-badge{display:inline-flex; align-items:center; gap:5px; background:rgba(214,169,74,.12); border:1px solid var(--gold-dim); border-radius:20px; padding:5px 12px; font-size:12px; color:var(--gold);}
+
+/* ---------- CONFETTI ---------- */
+#confettiLayer{position:fixed; inset:0; pointer-events:none; z-index:999; overflow:hidden;}
+.confetti-piece{position:absolute; top:-20px; border-radius:2px; animation:confettiFall linear forwards;}
+@keyframes confettiFall{ to{ transform:translateY(110vh) rotate(540deg); opacity:.3; } }
+
+/* ---------- CELEBRATION BOX ---------- */
+.celebrate-box{text-align:center; padding:30px 20px; animation:popIn .4s ease;}
+.celebrate-box .emoji{font-size:48px; margin-bottom:10px;}
+
+/* ---------- PRINT (for offline vocab sheets) ---------- */
+@media print{
+  .bottom-nav, .speak-btn, .star, .tabbar, .back-btn, .quiz, #confettiLayer, .flash-nav, .hero-stats, .app-credit-footer, .made-by{display:none !important;}
+  body, .hero{background:#fff !important; color:#000 !important;}
+  .hero::after{display:none;}
+  .word-row, .sent-row, .situation-card, .tip-card, .gram-card{background:#fff !important; border:1px solid #ccc !important; color:#000 !important; break-inside:avoid;}
+  .de, .ar, h1, h2, h3{color:#000 !important; text-shadow:none !important;}
+  .muted, .sub, .gram-sub{color:#444 !important;}
+}
+
+::-webkit-scrollbar{width:0;height:0;}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+<div id="confettiLayer"></div>
+
+<nav class="bottom-nav" id="bottomNav">
+  <button data-nav="home" class="active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/></svg>
+    الرئيسية
+  </button>
+  <button data-nav="lessons">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+    الدروس
+  </button>
+  <button data-nav="grammar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5V5.5A2.5 2.5 0 0 1 6.5 3H20v14H6.5a2.5 2.5 0 0 0 0 5H20"/></svg>
+    القواعد
+  </button>
+  <button data-nav="tips">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.45.9 1.15.9 1.9V16h5.4v-.3c0-.75.3-1.45.9-1.9A6 6 0 0 0 12 3Z"/></svg>
+    طرق المذاكرة
+  </button>
+  <button data-nav="progress">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+    تقدّمي
+  </button>
+</nav>
+
+<script src="data.js"></script>
+<script src="grammar.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
